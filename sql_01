@@ -1,4 +1,30 @@
 01-sql DDL Commands are used to change the Defination of data.
    DDL - Create, Drop, Alter are the DDL commands of SQL.
    
-   
+create database BigData;
+
+use BigData;
+
+create table employee
+( emp_id int,
+emp_name varchar(50),
+emp_salary double);
+
+insert into employee
+values(2123,"Bhatu",30000);
+
+insert into employee(emp_id,emp_salary)
+values(3234,32000);
+
+insert into employee
+values(2345,'john',43000),(2123,'sam',5600);
+
+select * from employee;
+create table emp_constraint
+( emp_id int NOT NULL,
+emp_name varchar(50) NOT NULL,
+salary DOUBLE,
+hiring_date Date,
+unique(emp_id),
+check(salary > 1000)
+);
