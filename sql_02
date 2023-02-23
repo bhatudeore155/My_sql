@@ -1,1 +1,23 @@
+-- alter table commands--
+create database class2_db;
+use class2_db;
+create table if not exists employee(
+    id int,
+    name varchar(50),
+    address varchar(50),
+    city varchar(50)
+    );
+show tables;
+select * from employee;
+insert into employee
+values(123,"bhatu","jalgaon","parola");
+alter table employee add DOB date;
+select * from employee;
 
+--modifying existing column in a table--
+alter table employee
+modify column name varchar(70);
+lter table employee
+drop column city;
+alter table employee
+rename colunm name to fullname;
