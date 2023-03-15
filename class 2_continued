@@ -1,0 +1,6 @@
+concept of keys:- setup some connectivity bet two or more tables.
+1- primary key:- is a constrain assign to column which is uniqualy identified.
+2- candidate key:- same as the primary key which is also uniquely identiied
+3- foreign key:- is a primary key which is act as a reference key for another tables.
+
+                  
