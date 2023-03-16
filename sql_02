@@ -21,3 +21,35 @@ lter table employee
 drop column city;
 alter table employee
 rename colunm name to fullname;
+
+
+continued---
+
+show databases;
+create DATABASE class2_db;
+use class2_db;
+create table if not exists employee(
+    id int,
+    name varchar(50), 
+    address varchar(50),
+    city varchar(50)
+);
+insert into employee
+values(1,'bhatu','rjmn','pune');
+select * from employee;
+
+---add new column named as DOB in the table.
+alter table employee add DOB date;
+
+---modify existing column in table.
+alter table employee modify column name varchar(100);
+alter table employee modify column address varchar(100);
+
+----2-delete or remove existing column from given table. 
+
+alter table employee drop column city;
+
+----rename column name.
+
+alter table employee rename column name to full_name;
+
