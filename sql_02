@@ -53,3 +53,5 @@ alter table employee drop column city;
 
 alter table employee rename column name to full_name;
 
+
+
