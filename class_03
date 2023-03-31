@@ -1,0 +1,70 @@
+create database class2_db;
+use class2_db;
+create table employee(
+    id int,
+    name varchar(50),  
+    address varchar(50)
+);
+alter table employee ADD column DOB date;
+alter table employee
+Rename column name to full_name;
+alter table employee 
+MODIFY column full_name varchar(100);
+alter table employee
+modify column address varchar(100);
+
+insert into employee
+values(121,"chandra nair","NYC_jorden",'2023-09-12');
+insert into employee
+values(122,"sam androw","NYC_jorden",'2023-09-15');
+select * from employee;
+create table persons(
+    id int, 
+    name varchar(50),
+    age int,
+    primary KEY (id)
+    );
+
+insert into persons
+values(112,'leana shaw',25);
+insert into persons
+values(113,'andrew shaw',28);
+insert into persons
+values(114,'sam shaw',25);
+alter table persons
+add column DOB date;
+add column add varchar(50);
+select * from persons
+union 
+select * from employee;
+
+create table persons(
+    id int, 
+    name varchar(50),
+    age int,
+    primary KEY (id)
+    );
+
+insert into persons
+values(112,'leana shaw',25);
+insert into persons
+values(113,'andrew shaw',28);
+insert into persons
+values(115,'sam shaw',26,null);
+alter table persons
+add column DOB date;
+add column add varchar(50);
+select * from persons
+union 
+select * from employee;
+
+alter table persons
+add constraint unique(age);
+
+UPDATE persons
+set age = 21
+where id = 114;
+
+select * from persons;
+DELETE from persons
+where id = 115;
