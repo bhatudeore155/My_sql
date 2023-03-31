@@ -68,3 +68,26 @@ where id = 114;
 select * from persons;
 DELETE from persons
 where id = 115;
+
+create table customer
+(cust_id int,
+name varchar(50),
+age int,
+PRIMARY KEY(cust_id));
+
+create table orders
+(order_id int,
+order_num int,
+customer_id int,
+PRIMARY KEY(order_id),
+Foreign Key (customer_id) REFERENCES customer(cust_id)
+);
+
+---- Difference between Drop & Truncate Commands.ADD
+---drop delete the whole table structure with DATA
+-----truncate only deletes data in table but structure remains.
+select * from persons;
+TRUNCATE table persons;
+DROP table persons;
+
+----operations with select command.
