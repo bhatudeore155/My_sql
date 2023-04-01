@@ -1,0 +1,37 @@
+ 
+
+----assignment.
+create database assignment;
+use assignment;
+create table pop_gdp(
+name varchar(100),
+continent varchar(100),
+area int,
+popul bigint,
+gdp bigint);
+insert into pop_gdp
+values('Afghanistan','Asia', 652230,25500100,20343000000);
+insert into pop_gdp
+values('Albania', 'Europe', 28748, 2831741, 12960000000);
+insert into pop_gdp
+values('Algeria', 'Africa', 2381741, 37100000, 188681000000);
+insert into pop_gdp
+values('Andorra', 'Europe', 468, 78115, 3712000000);
+insert into pop_gdp
+values('Angola', 'Africa', 1246700, 20609294, 100990000000);
+insert into pop_gdp
+values('Dominican Republic', 'Caribbean', 48671, 9445281, 58898000000);
+insert into pop_gdp
+values('China', 'Asia', 9596961, 1365370000, 8358400000000);
+insert into pop_gdp
+values('Colombia', 'South America', 1141748, 47662000, 369813000000);
+insert into pop_gdp
+values('Comoros', 'Africa', 1862, 743798, 616000000);
+insert into pop_gdp
+values('Denmark', 'Europe', 43094, 5634437, 314889000000);
+insert into pop_gdp
+values('Djibouti', 'Africa', 23200, 886000, 1361000000);
+insert into pop_gdp
+values('Dominica', 'Caribbean', 751, 71293, 499000000);
+
+select * from pop_gdp;
