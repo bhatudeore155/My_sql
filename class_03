@@ -111,4 +111,7 @@ insert into employee values(5,'Amit', 25, '2021-08-11', 12000, 'Noida');
 insert into employee values(1,'Puneet', 26, '2021-08-12', 50000, 'Gurgaon');
 select * from employee;
 
+----how to perform multi update 
+update employee set age = 28, salary = 25000 where hiring_date = '2021-08-10';
+select * from employee;
 
