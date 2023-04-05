@@ -91,3 +91,24 @@ TRUNCATE table persons;
 DROP table persons;
 
 ----operations with select command.
+
+-- Active: 1680255599345@@127.0.0.1@3306@usa_prod
+create database test_db;
+use test_db;
+create table if not exists employee(
+    id int,
+    name VARCHAR(50),
+    age int,
+    hiring_date date,
+    salary int,
+    city varchar(50)
+);
+
+insert into employee values(1,'Shashank', 24, '2021-08-10', 10000, 'Lucknow');
+insert into employee values(2,'Rahul', 25, '2021-08-10', 20000, 'Khajuraho');
+insert into employee values(3,'Sunny', 22, '2021-08-11', 11000, 'Banaglore');
+insert into employee values(5,'Amit', 25, '2021-08-11', 12000, 'Noida');
+insert into employee values(1,'Puneet', 26, '2021-08-12', 50000, 'Gurgaon');
+select * from employee;
+
+
