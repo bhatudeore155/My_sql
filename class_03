@@ -160,3 +160,10 @@ where age IN ( select age from employee where age > 24);
 select * from employee;
 delete from employee
 where name = 'puneet';
+
+---sorting of data by Ordere by clause ----
+select * from employee order by name DESC;
+select * from employee order by salary desc, name asc;
+select * from employee
+where salary IN (select max(salary) from employee);
+select * from employee order by salary limit 1;
