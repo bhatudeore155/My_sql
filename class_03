@@ -115,3 +115,48 @@ select * from employee;
 update employee set age = 28, salary = 25000 where hiring_date = '2021-08-10';
 select * from employee;
 
+select * from employee;
+select * from employee
+where id = 1
+limit 1;
+---select distinct---
+select distinct(hiring_date) from employee;
+----- update-----
+update employee
+set name = 'john'
+where id = 2;
+update employee
+set id = 6 
+where name = 'punnet';
+-----multi_update----
+update employee 
+set name = 'mr.john', age = 26
+where id = 2;
+
+---- where between ----
+select * from employee
+where age BETWEEN 22 and 25;
+---- Like ----
+select * from employee
+where name like 's%';
+select * from employee
+where name like '%t';
+select * from employee
+where name like '_m%';
+select * from employee
+where name like 's%y';
+select * from employee
+where name like '%nn%';
+select * from employee
+where name like 's__%';
+----IN ----
+
+select * from employee
+where age IN (24,26);
+select * from employee
+where age IN ( select age from employee where age > 24);
+
+
+select * from employee;
+delete from employee
+where name = 'puneet';
