@@ -177,3 +177,9 @@ select * from employee where salary <> 20000;
 
 ----Logical operaters. 
 select * from employee where salary = 10000 and age = 24; 
+---- IS NULL & IS NOT NULL -----
+select name, salary from employee
+where age IS NULL;
+
+select * from employee 
+where salary IS NOT NULL;
