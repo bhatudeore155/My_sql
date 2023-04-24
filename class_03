@@ -183,3 +183,18 @@ where age IS NULL;
 
 select * from employee 
 where salary IS NOT NULL;
+
+---calculate total order placed by country---
+select country, cust_id, count(*) as order_count from order_data
+group by country;
+
+select * from employee;
+update employee set age = 25 where id = 10;
+update employee set salary = 30000 where id = 11;
+---write a query to find the total salary by each age group---
+select sum(salary) as total_salary, age from employee
+group by age
+order by total_salary DESC;
+---- group by operations on salary column----
+select count(*), age from employee
+group by age;
