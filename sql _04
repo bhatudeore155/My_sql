@@ -124,3 +124,15 @@ select merchant_id,
        sum(CASE WHEN payment_mode = 'online' THEN amount else 0 end) as online_amount
 from transactions       
 group by merchant_id; 
+
+select patients.patient_id,
+first_name,
+last_name from patients
+join admissions 
+on admissions.patient_id = patients.patient_id
+where diagnosis = 'Dementia';
+
+select patient_id, first_name,last_name
+from patients
+where patient_id In(select patient_id from admissions 
+                    where diagnosis = 'Dementia');
