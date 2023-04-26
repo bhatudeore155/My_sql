@@ -50,3 +50,53 @@ select * from employees;
 ---write a query to print all those employee records- who are getting salary more than rohit--
 select * from employees
 where salary > (select salary from employees where name = 'Rohit');
+
+---- case when in sql----
+Create table student_marks
+(
+    stu_id int,
+    stu_name varchar(50),
+    total_marks int
+);
+
+insert into student_marks values(1,'Shashank',50);
+insert into student_marks values(2,'Rahul',91);
+insert into student_marks values(3,'Amit',74);
+insert into student_marks values(4,'Nikhil',65);
+insert into student_marks values(5,'Rohit',86);
+insert into student_marks values(6,'Deepak',77);
+
+select * from student_marks;
+
+--- write query to working on case statement---
+select stu_id,
+       stu_name,
+       total_marks,
+       case  
+           when total_marks >=90 then 'A+'
+           when total_marks >=85 and total_marks < 90 then 'A'
+           when total_marks >=75 and total_marks < 80 then 'B+'
+           when total_marks >=65 and total_marks < 70 then 'B'
+           else 'c'
+        end as grade 
+from student_marks;
+--uber interview question---
+---write a query to get nodes from tree and its types.
+
+create table tree
+(
+    node int,
+    parent int
+);
+insert into tree values(5,8),(9,8),(4,5),(2,9),(1,5),(3,9),(8,null);
+select * from tree;
+
+select node,
+       CASE 
+        WHEN node not in(select DISTINCT(parent)from tree where parent is not null) 
+        THEN 'Leaf' 
+        when parent is null then 'Root'
+        else 'Inner' 
+     
+       END as node_type
+from tree;
