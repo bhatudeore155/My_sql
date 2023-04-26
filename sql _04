@@ -34,3 +34,19 @@ group by country;
 
 select country, GROUP_CONCAT(distinct(state) order by state DESC SEPARATOR '-') as states_in_country from orders_data
 group by country;
+
+----Subqueries in SQL-----
+create table employees
+(
+    id int,
+    name varchar(50),
+    salary int
+);
+
+insert into employees values(1,'Shashank',5000),(2,'Amit',5500),(3,'Rahul',7000),(4,'Rohit',6000),(5,'Nitin',4000),(6,'Sunny',7500);
+
+select * from employees;
+
+---write a query to print all those employee records- who are getting salary more than rohit--
+select * from employees
+where salary > (select salary from employees where name = 'Rohit');
