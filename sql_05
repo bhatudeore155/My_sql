@@ -181,3 +181,29 @@ select sales_date,
 select *,
         lead(sales_amount, 1) over(order by sales_date) as pre_date_sales
         from daily_sales;
+
+select sales_date,
+       sales_amount as curr_sales_amount,
+       lead(sales_amount) over(ORDER BY sales_date) as pre_date_sales,
+       sales_amount - lead(sales_amount) over(ORDER BY sales_date) as lead_sales_diff
+       from daily_sales;
+
+#Frame Clause.
+# Rows_Between clause---
+select * from daily_sales;
+
+select *,
+        sum(sales_amount) over(order by sales_date rows between 1 PRECEDING and 0 FOLLOWING) as pre_plus_next_sales
+        from daily_sales;
+
+select *,
+        sum(sales_amount) over(order by sales_date rows between unbounded PRECEDING and 0 FOLLOWING) as pre_plus_next_sales
+        from daily_sales;
+select *,
+        sum(sales_amount) over(order by sales_date rows between 0 PRECEDING and unbounded FOLLOWING) as pre_plus_next_sales
+        from daily_sales;
+
+# Range_Between---
+select *,
+        sum(sales_amount) over(ORDER BY sales_date range between interval '6' day preceding and current row) as runn_weekly_sum
+        from daily_sales;
