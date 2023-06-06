@@ -1,0 +1,45 @@
+---STRING FUNCTION ----
+
+create database str_functn;
+use str_functn;
+create table employeee(
+    emp_id int,
+    emp_name varchar(20),
+    dept_id int,
+    salary int,
+    manager_id int,
+    emp_age int
+);
+
+
+
+insert into employeee values(1,'Raj',500,10000,4,39);
+insert into employeee values(2,'Mohit',500,15000,5,48);
+insert into employeee values(3,'Vikas',500,10000,4,37);
+insert into employeee values(4,'Rohit',500,5000,2,16);
+insert into employeee values(5,'Arpit',600,12000,6,55);
+insert into employeee values(6,'Sugam',600,12000,2,14);
+insert into employeee values(7,'Sanjay',600,9000,2,13);
+insert into employeee values(8,'Mithun',600,8000,2,12);
+insert into employeee values(9,'Deb',300,6000,6,51);
+insert into employeee values(10,'Rakesh',700,7000,6,50)
+
+
+select * from employeee;
+
+---Q select ascii value from emp_name column.
+
+select ASCII(emp_name) from employeee;
+
+---Q display the lenght of emp name 
+
+select emp_name, char_length(emp_name) as chr_length from employeee;
+
+---Q select emp_name and emp_age in one column
+
+select CONCAT('emp_name','emp_age') as emp_name_id from employeee;
+
+---Q select age column from emp_id, emp_name, salary, emp_age
+
+select ELT(4,'emp_id','emp_name', 'salary','emp_age') from employeee;
+
