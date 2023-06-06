@@ -9,13 +9,6 @@ CREATE table record_label (id int, name varchar(50))
 CREATE table artist (id int, record_label_id int, name varchar(50))
 
 
-
-
-
-
-
-
-
 Inserting Values
 
 INSERT INTO album (id, artist_id, name, year) VALUES(1,	1, 'Devils got a new disguise', 2006),
@@ -115,3 +108,131 @@ join album al on s.album_id = al.id
 join artist ar on ar.id = al.artist_id
 group by ar.name
 order by no_of_songs DESC;
+
+---Q5. Which artist or artists have recorded the most number of songs?
+
+select top 1 ar.name as artist_name, count(*) as no_of_songs from artist ar 
+join album al on ar.id = al.artist_id
+join song s on s.album_id = al.id
+group by ar.name
+order by no_of_songs DESC;
+
+---Q6.Which artist or artists have recorded the least number of songs?
+
+select top 5 ar.name as artist_name, count(*) as no_of_songs from artist ar 
+join album al on ar.id = al.artist_id
+join song s on s.album_id = al.id
+group by ar.name
+order by no_of_songs asc;
+
+---Q7.which artists have recorded songs longer than 5 minutes, and how many songs was that?
+
+select ar.name as artist_name, count(*) as no_of_songs from artist ar 
+join album al on ar.id = al.artist_id
+join song s on s.album_id = al.id
+where s.duration > 5
+group by ar.name;
+
+---Q8.for each artist and album how many songs were less than 5 minutes long?
+
+select ar.name as artist_name, al.name, count(*) as no_of_songs from artist ar 
+join album al on ar.id = al.artist_id
+join song s on s.album_id = al.id
+where s.duration < 5
+group by ar.name, al.name;
+
+---Q9.In which year or years were the most songs recorded?
+
+select top 1 al.year as year, count(*) as no_of_songs from album al 
+join song s on al.id = s.album_id
+group by al.year
+order by no_of_songs DESC;
+
+---Q10. list the artist, song and year of the top 5 longest recorded songs
+
+select top 5 ar.name as artist_name, al.name as album_name, s.name as song, al.year as year, s.duration from artist ar 
+join album al on ar.id = al.artist_id
+join song s on s.album_id = al.id
+group by ar.name, al.name, s.name, al.year, s.duration
+order by s.duration DESC;
+
+---Q11.Number of albums recorded for each year
+
+select al.year as years, count(*) as count_album from album al 
+group by al.year;
+
+---Q12. What is the max number of recorded albums across all the years?
+
+select max(tmp.count_album) as max_no_album from (select al.year as years, count(*) as count_album from album al 
+group by al.year) tmp;
+
+---Q13. In which year (or years) were the most (max) number of albums recorded, and how many were recorded?
+select top 1 tmp.years as years, max(tmp.count_album) as max_no_album from (select al.year as years, count(*) as count_album from album al 
+group by al.year) tmp
+group by tmp.years
+order by max_no_album DESC;
+
+---Q14. total duration of all songs recorded by each artist in descending order
+
+select ar.name as artist_name, round(sum(s.duration),2) as total_duration from artist ar
+join album al on ar.id = al.artist_id
+join song s on s.album_id = al.id
+group by ar.name 
+order by total_duration DESC;
+
+---Q15.for which artist and album are there no songs less than 5 minutes long?
+select ar.name, al.name from artist ar 
+left join album al on ar.id = al.artist_id
+left join song s on s.album_id = al.id and s.duration < 5 where  s.name is null
+group by ar.name, al.name;
+
+---Q16. Display a table of all artists, albums, songs and song duration -- all ordered in ascending order by artist, album and song
+
+select  distinct(ar.name) as artist_name, al.name as album_name, s.name as song_name, s.duration from artist ar 
+join album al on ar.id = al.artist_id
+join song s on s.album_id = al.id
+group by ar.name, al.name, s.name, s.duration
+order by artist_name, album_name, song_name asc;
+
+---Q18. Total album length for all songs on the Greatest hits album - in minutes and seconds
+
+select al.name, ROUND(sum(s.duration),0) as minuts, round(sum(s.duration),02 ) as sec from album al 
+join song s on al.id = s.album_id
+where al.name = 'Greatest Hits'
+group by al.name;
+
+#OR
+select al.name 'album_name',
+case 
+when round((sum(s.duration)-cast(sum(s.duration) as int)),2)> 0.60 then 
+cast(sum(s.duration) as int) +1 
+else cast(sum(s.duration) as int)
+end as 'minutes',
+case 
+when round((sum(s.duration)-cast(sum(s.duration) as int)),2)> 0.60 
+then round(sum((s.duration)-cast(sum(s.duration) as int)),2)=0.60)*100
+else round((sum(s.duration)-cast(sum(s.duration) as int)),2)*100
+end as 'seconds' from album al 
+join song s on al.id = s.album_id
+where al.name = 'Greatest Hits'
+group by al.name;
+
+---Q19. Which artists did not release an album during the decades of the 1980's and the 1990's?
+select distinct ar.name as artist_name from artist ar 
+left join album al on ar.id = al.artist_id
+where ar.id not  between 1980 and 1990;
+
+
+select distinct ar.name as artist_name from artist ar 
+left join album al on ar.id = al.artist_id and al.year >= 1980 
+and al.year <= 1990
+where al.year is null
+order by ar.name;
+
+
+---Q20. Which artists did release an album during the decades of the 1980's and the 1990's?
+select distinct ar.name as artist_name from artist ar 
+left join album al on ar.id = al.artist_id and al.year >= 1980 
+and al.year <= 1990
+where al.year is not null
+order by ar.name;
